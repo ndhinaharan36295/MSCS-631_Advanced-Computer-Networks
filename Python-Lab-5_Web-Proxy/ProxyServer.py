@@ -11,7 +11,7 @@ tcpSerSock = socket(AF_INET, SOCK_STREAM)
 
 # Fill in start.
 server_ip = sys.argv[1]          # e.g. 127.0.0.1
-server_port = 8888               # you can change this if you like
+server_port = 8888
 tcpSerSock.bind((server_ip, server_port))
 tcpSerSock.listen(5)
 # Fill in end.
@@ -55,7 +55,6 @@ while True:
         fileExist = "true"
 
         # ProxyServer finds a cache hit and generates a response message
-        # Note: send bytes in Python 3
         tcpCliSock.send(b"HTTP/1.0 200 OK\r\n")
         tcpCliSock.send(b"Content-Type: text/html\r\n")
         # Fill in start.
@@ -73,7 +72,6 @@ while True:
             c = socket(AF_INET, SOCK_STREAM)
             # Fill in end.
 
-            # Some URLs begin with "www." – original lab strips it:
             hostn = filename.replace("www.", "", 1)
             print("Host to contact:", hostn)
 
